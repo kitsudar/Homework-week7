@@ -1,0 +1,72 @@
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	</head>
+	<body id="colorPicker">
+		<div class="name">
+			<p>name<input id="name" type="text"></p>
+			<p>color<input id="userBgColor" type="color"></p>
+			<button>Save</button>
+		<!-- <span id="uuid"></span>
+			<input id="generateUUID" type="button" value="getUUID" />
+		</div> -->
+
+	<footer>
+		<div>Hi <span id="display"></span>, your session GUID is: </div><span id="uuid"></span><input id="generateUUID" type="button" value="getUUID" />
+		</div>
+	</footer>
+
+	<script>
+		$('button').click(function () {
+			var inputValue = $('#name').val();
+			localStorage.setItem('name', inputValue);
+
+			var inputValue = $('#userBgColor').val();
+			localStorage.setItem('userColor', inputValue);
+
+			var name = localStorage.getItem('name');
+			console.log(name);
+			var colorVal = localStorage.getItem('userColor');
+  			console.log(colorVal);
+		});
+
+
+	// display name
+	$('button').click(function () {
+		$('#display').text($('#name').val());
+		$('#userBgColor').css('background-color', 'userColor');
+	});
+
+var colorVal = document.getElementById('userBgColor');
+    document.getElementById("colorPicker").style.backgroundColor = colorVal;
+    localStorage.setItem("userBgColor", colorVal);
+
+
+ //    $('button').click(function () {
+	// 	$('#colorPicker').color($('#userBgColor').val());
+	// });
+
+
+
+	function generateUUID() {
+    var d = new Date().getTime();
+    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = (d + Math.random()*16)%16 | 0;
+        d = Math.floor(d/16);
+        return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+    });
+    return uuid;
+};
+	// $('#guid').html(uuid);
+
+document.getElementById('generateUUID').onclick = function() {
+    document.getElementById('uuid').innerHTML = generateUUID();
+};
+
+document.getElementById('uuid').innerHTML = generateUUID();
+
+
+	</script>
+
+</body>
+</html>
