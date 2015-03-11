@@ -9,7 +9,7 @@
 			<button>Save</button>
 
 	<footer>
-		<div>Hi <span id="display"></span>, your session GUID is: </div><span id="uuid"></span><input id="generateUUID" type="button" value="getUUID" />
+		<div>Hi <span id="display"></span>, your session GUID is: </div><span id="uuid"></span><input id="generateUUID" type="hidden" value="getUUID" />
 		</div>
 	</footer>
 
@@ -17,32 +17,22 @@
 		$('button').click(function () {
 			var inputValue = $('#name').val();
 			localStorage.setItem('name', inputValue);
-
 			var inputValue = $('#userBgColor').val();
 			localStorage.setItem('userColor', inputValue);
-
 			var name = localStorage.getItem('name');
 			console.log(name);
 			var colorVal = localStorage.getItem('userColor');
   			console.log(colorVal);
+
+  			$('#display').text($('#name').val());
+  			$('body').css('background-color', colorVal);
 		});
 
 
-	// display name
-	$('button').click(function () {
-		$('#display').text($('#name').val());
-		$('#userBgColor').css('background-color', 'userColor');
-	});
 
 var colorVal = document.getElementById('userBgColor');
     document.getElementById("colorPicker").style.backgroundColor = colorVal;
     localStorage.setItem("userBgColor", colorVal);
-
-
- //    $('button').click(function () {
-	// 	$('#colorPicker').color($('#userBgColor').val());
-	// });
-
 
 
 	function generateUUID() {
@@ -55,14 +45,10 @@ var colorVal = document.getElementById('userBgColor');
     return uuid;
 };
 	// $('#guid').html(uuid);
-
 document.getElementById('generateUUID').onclick = function() {
     document.getElementById('uuid').innerHTML = generateUUID();
 };
-
 document.getElementById('uuid').innerHTML = generateUUID();
-
-
 	</script>
 
 </body>
